@@ -20,17 +20,17 @@ def test_not_match(output, script):
     'git branch foo',
     'git checkout feature/test_commit',
     'git push'])
-def test_not_match(script):
+def test_not_match_either(script):
     assert not match(Command(script, ''))
 
 
 @pytest.mark.parametrize('script', [
     ('git commit')])
-def test_get_new_command(script):
+def test_get_new_command_one(script):
     assert get_new_command(Command(script, '')) == 'git commit -a'
 
 
 @pytest.mark.parametrize('script', [
     ('git commit -m "test commit"')])
-def test_get_new_command(script):
+def test_get_new_command_two(script):
     assert get_new_command(Command(script, '')) == 'git commit -a -m "test commit"'
